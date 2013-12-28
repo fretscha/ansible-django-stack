@@ -1,0 +1,35 @@
+---
+# file: mail.yml
+- name: copy ssh pub key to deployment user
+  authorized_key: user=vagrant key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}" state=present
+
+- name: update all packages
+  sudo: yes
+  apt: update_cache=yes cache_valid_time=3600
+  apt: upgrade=safe
+  apt: pkg=unattended-upgrades state=present
+  when: ansible_distribution == 'Ubuntu'
+
+
+- name: Install Common Packages
+  sudo: yes
+  apt: >
+     pkg={{ item }}
+     state=installed
+     update-cache=yes
+  with_items:
+     - htop
+     - vim
+  when: ansible_distribution == 'Ubuntu'
+
+- user: name=root password={{ root_password }}
+
+- include: users.yml
+- include: postfix.yml
+- include: logwatch.yml
+- include: fail2ban.yml
+- include: ufw.yml
+
+- name: Disallow root SSH access
+  action: lineinfile dest=/etc/ssh/sshd_config regexp="^PermitRootLogin" line="PermitRootLogin no" state=present
+  notify: Restart ssh

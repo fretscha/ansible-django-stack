@@ -1,0 +1,8 @@
+---
+# file: users.yml
+
+- user: name=root password={{ root_password }}
+
+- group: name=deploy state=present
+
+- user: name=deploy group=deploy state=present

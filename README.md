@@ -6,24 +6,24 @@ Goal of this project is to deploy the entire django stack with help of ansible
 todo
 ----
 * My First 5 Minutes On A Server
-* Database setup 
+* Database setup
   * postgresql
 * Python Layer
   * pip
   * virtualenv
   * django
 * Application
-  * git pull django project 
+  * git pull django project
   * install requirements
 * uWSGI
-* Apache reverse proxy 
-  * apache 2.4 
+* Apache reverse proxy
+  * apache 2.4
   * mod_security
-* Caching 
+* Caching
   * memcached
 * Loadbalancer
   * HAProxy
-  
+
 My First 5 Minutes On A Server
 ------------------------------
 1. Update & upgrade the system via apt-get
@@ -33,7 +33,7 @@ My First 5 Minutes On A Server
 5. Lock down sudo
 6. Lock down ssh to prevent root & password login
 7. Setup the ufw firewall
-8. Install vim, ntp, postfix  
+8. Install vim, ntp, postfix
 9. Install fail2ban to block attacks
 10. Configure unattended security upgrades
 11. Configure logwatch to email daily server logs

@@ -1,0 +1,10 @@
+---
+# file: dbservers.yml
+- name: Configure all servers
+  hosts: all
+  sudo: yes
+
+  roles:
+    - role: common
+    - role: dbservers
+    - role: webservers

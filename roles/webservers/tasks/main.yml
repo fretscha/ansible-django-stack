@@ -1,0 +1,11 @@
+---
+# simple hardening of boxes
+- name: Install Python Packages
+  sudo: yes
+  apt: >
+    pkg={{ item }}
+    state=installed
+    update-cache=yes
+  with_items:
+    - python-pip
+    - python-virtualenv

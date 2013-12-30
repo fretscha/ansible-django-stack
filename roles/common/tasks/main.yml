@@ -22,8 +22,6 @@
      - vim
   when: ansible_distribution == 'Ubuntu'
 
-- user: name=root password={{ root_password }}
-
 - include: users.yml
 - include: postfix.yml
 - include: logwatch.yml

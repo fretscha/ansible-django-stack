@@ -4,3 +4,8 @@
 - name: Install fail2ban
   sudo: yes
   apt: pkg=fail2ban state=installed
+
+
+# TODO ban multiple ssh login failures
+
+# TODO Test: no clue how to test without locking myself out

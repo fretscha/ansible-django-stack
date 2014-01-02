@@ -7,7 +7,11 @@ todo
 ----
 * My First 5 Minutes On A Server
 * Database setup
-  * postgresql
+  * Christophe Pettus's PostgreSQL configuration
+    * Logging
+    * Memory
+    * Checkpoint
+    * Planner
 * Python Layer
   * pip
   * virtualenv

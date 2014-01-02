@@ -8,3 +8,7 @@
   sudo: yes
   lineinfile: dest=/etc/cron.daily/00logwatch regexp="^/usr/sbin/logwatch" line="/usr/sbin/logwatch --output mail --mailto {{ logwatch_email }} --detail high" state=present create=yes
 
+
+# TODO define what and when to log
+
+# TODO Test: trigger log and the trigger output

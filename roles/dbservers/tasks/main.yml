@@ -1,6 +1,7 @@
 ---
 
 - name: Install DB Packages
+  sudo: yes
   apt: >
     pkg={{ item }}
     state=installed

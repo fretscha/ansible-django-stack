@@ -1,10 +1,19 @@
 ---
-# file: dbservers.yml
+# file: site.yml
 - name: Configure all servers
   hosts: all
-  sudo: yes
-
+  accelerate: true
   roles:
-    - role: common
+  - role: common
+
+- name: Configure db servers
+  hosts: dbservers
+  accelerate: true
+  roles:
     - role: dbservers
-    - role: webservers
+
+- name: Configure web servers
+  hosts: webservers
+  accelerate: true
+  roles:
+  - role: webservers

@@ -1,8 +1,26 @@
 ---
 # file: users.yml
+- name: set root root_password
+  sudo: yes
+  user: name=root password={{ root_password }}
+  tags: setup
 
-- user: name=root password={{ root_password }}
+- name: add group deploy
+  sudo: yes
+  group: name=deploy state=present
+  tags: setup
 
-- group: name=deploy state=present
+- name: add user deploy
+  sudo: yes
+  user: name={{ deploy_user }} group=deploy password={{ deploy_password }} state=present
+  tags: setup
 
-- user: name=deploy group=deploy state=present
+- name: copy ssh pub key to deployment user
+  sudo: yes
+  authorized_key: user={{ deploy_user }} key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}" state=present
+  tags: setup
+
+- name: add deploy_user to sudoers
+  sudo: yes
+  template: src=user.j2 dest=/etc/sudoers.d/{{ deploy_user }}
+  tags: setup

@@ -1,0 +1,8 @@
+[program:uwsgi]
+user = uwsgi
+command=/opt/bin/uwsgi --xmlconfig=/sites/mywebsite/myproject/confs/uwsgi.xml
+autostart=true
+autorestart=true
+stderr_logfile = /sites/mywebsite/log/uwsgi/err.log
+stdout_logfile = /sites/mywebsite/log/uwsgi/out.log
+stopsignal=INT

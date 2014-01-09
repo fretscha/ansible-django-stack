@@ -1,20 +1,24 @@
 ---
 # file: main.yml
 
-- name: set update cache
+- name: Prepare acceleration on all servers
   sudo: yes
-  apt: update_cache=yes
-  apt: upgrade=safe
-  apt: pkg=unattended-upgrades state=present
+  apt: pkg=python-keyczar state=present update-cache=yes
+  tags: setup
+
+- name: set update cache and safe updates
+  sudo: yes
+  apt: update_cache=yes upgrade=safe
   when: ansible_distribution == 'Ubuntu'
 
 - name: Install Common Packages
   sudo: yes
   apt: >
      pkg={{ item }}
-     state=installed
+     state=present
      update-cache=yes
   with_items:
+     - unattended-upgrades
      - htop
      - vim
   when: ansible_distribution == 'Ubuntu'

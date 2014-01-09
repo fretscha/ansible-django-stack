@@ -1,0 +1,28 @@
+upstream uwsgi {
+    ip_hash;
+        server 127.0.0.1:40000;
+}
+server {
+ 
+        listen                  80;
+        server_name             www.domain.com;
+        root                    /sites/mysite/;
+        access_log              /sites/mysite/log/nginx/access.log;
+        error_log       /sites/mysite/log/nginx/error.log;
+ 
+        location /media/ {
+                alias /sites/mysite/media/;
+        }
+        
+        location /static/ {
+                alias /sites/mysite/static/;
+        }
+ 
+        location / {
+                include         uwsgi_params;
+                uwsgi_pass      uwsgi;
+                uwsgi_param     UWSGI_PYHOME $document_root;
+                uwsgi_param     UWSGI_CHDIR $document_root/project_root;
+                uwsgi_param     UWSGI_SCRIPT confs.django_wsgi;
+        }
+}

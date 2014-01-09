@@ -2,18 +2,23 @@
 # file: site.yml
 - name: Configure all servers
   hosts: all
-  accelerate: true
+  accelerate: "{{ accelerate }}"
   roles:
   - role: common
 
 - name: Configure db servers
   hosts: dbservers
-  accelerate: true
+  accelerate: "{{ accelerate }}"
   roles:
     - role: dbservers
 
 - name: Configure web servers
   hosts: webservers
-  accelerate: true
+  accelerate: "{{ accelerate }}"
   roles:
   - role: webservers
+#  - role: apache
+#  - role: supervisord
+#  - role: uwsgi
+#  - role: django
+

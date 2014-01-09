@@ -19,10 +19,13 @@ todo
 * Application
   * git pull django project
   * install requirements
-* uWSGI
+* uWSGI Appserver
+* Gunicorn Appserver
+* Supervisord
 * Apache reverse proxy
   * apache 2.4
   * mod_security
+* Nginx reverse proxy
 * Caching
   * memcached
 * Loadbalancer
